@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Projeto {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projeto_id", nullable = false)
@@ -14,8 +14,8 @@ public class Projeto {
     @Column(name = "projeto_status", nullable = false)
     private int status;
 
-    public int getId(){
-        return id;
-    }
+
+
+
 
 }

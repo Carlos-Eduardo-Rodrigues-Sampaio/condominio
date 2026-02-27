@@ -1,5 +1,7 @@
 package com.senac.inicial.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,6 +9,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value= "api/empresa")
 public class ProjetoController {
 
+    private final ProjetoService projetoService;
 
+    public ProjetoController(ProjetoService projetoService) {
+        this.projetoService = projetoService;
+    }
+
+    @GetMapping ("/listarProjetos")
+    public String listarProjetos() {
+        return "REST endpoint está funcionando";
+    }
+
+    @GetMapping("/ObterProjetoPeloId/{idProjeto}")
+    public Projeto obterProjetoPeloId(@PathVariable Integer idProjeto) {
+        return projetoService.obterProjetoPeloId(idProjeto);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String adicionarProjeto(){
+        return "Projeto adicionado";
+    }
+
+    @DeleteMapping("/apagarProjeto" )
+    public String apagarProjeto() {
+        return "Projeto Apagado";
+    }
 
 }
