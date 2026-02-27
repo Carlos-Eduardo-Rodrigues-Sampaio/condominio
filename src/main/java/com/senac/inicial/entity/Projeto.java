@@ -1,8 +1,10 @@
 package com.senac.inicial.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "projeto")
 public class Projeto {
 
     @Id
@@ -13,6 +15,17 @@ public class Projeto {
     private String nome;
     @Column(name = "projeto_status", nullable = false)
     private int status;
+
+    @Transient
+    private int empresaId;
+
+    @Transient
+    private String empresaNome;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id", nullable = false)
+    @JsonIgnore
+    private Empresa empresa;
 
     public int getId() {
         return id;
@@ -38,10 +51,20 @@ public class Projeto {
         this.status = status;
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
 
+    public int getEmpresaId() {
+        return empresa.getId();
+    }
 
-
-
-
+    public String getEmpresaNome() {
+        return empresa.getNome();
+    }
 }

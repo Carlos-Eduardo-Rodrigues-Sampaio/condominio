@@ -4,8 +4,11 @@ import com.senac.inicial.entity.Projeto;
 import com.senac.inicial.service.ProjetoService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value= "api/empresa")
+@RequestMapping(value= "api/projeto")
+//@CrossOrigin("*")
 public class ProjetoController {
 
     private final ProjetoService projetoService;
@@ -15,8 +18,8 @@ public class ProjetoController {
     }
 
     @GetMapping("/listarProjetos")
-    public String listarProjetos() {
-        return "REST endpoint está funcionando";
+    public List<Projeto> listarProjetos() {
+        return projetoService.listarProjetos();
     }
 
     @GetMapping("/ObterProjetoPeloId/{idProjeto}")
