@@ -16,14 +16,14 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/listarUsuario")
-    public List<Usuario> listarUsuarios() {
-        return usuarioService.listarUsuarios();
+    @GetMapping("/listarUsuarios")
+    public ResponseEntity<List<Usuario>> listarUsuarios() {
+        return new ResponseEntity<>(usuarioService.listarUsuarios(), httpStatus.OK);
     }
 
     @GetMapping("/ObterUsuarioPeloId/{idUsuario}")
-    public Usuario oberUsuariosPeloId(@PathVariable Integer idUsuario) {
-        return usuarioService.obterUsuarioPeloID(idUsuario);
+    public ResponseEntity<Usuario> oberUsuariosPeloId(@PathVariable Integer idUsuario) {
+        return ResponseEntity.ok(usuarioService.obterUsuarioPeloID(idUsuario));
     }
 
     @RequestMapping(method = RequestMethod.POST)
